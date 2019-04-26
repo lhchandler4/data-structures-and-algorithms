@@ -13,11 +13,7 @@ For example:
 ------------------------------------------------------------------------------------------------ */
 
 const isNum = (input) => {
-  if input.includes('/d') {
-    return true; 
-  }else {
-    return false;
-  }
+  return /\d/.test (input);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -29,7 +25,13 @@ Return an array containing all the matches.
 ------------------------------------------------------------------------------------------------ */
 
 const isCapitalized = (str) => {
-  // Solution code here...
+  let cap =/[A-Z]\w+/g;
+  let found = str.match(cap);
+  if(found){
+    return found
+  }else{
+    return [];
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -39,9 +41,14 @@ Write a function named citiesAtoJ that takes in an array of city names and uses 
 ------------------------------------------------------------------------------------------------ */
 
 const citiesAtoJ = (arr) => {
-  // Solution code here...
+  let newArray = [];
+  arr.forEach(city => {
+    if(/^[A-J]/.test(city)) {
+      newArray.push(city);
+    }
+  });
+  return newArray;
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
 
@@ -55,7 +62,8 @@ Do not use the vertical bar (pipe) in your pattern.
 ------------------------------------------------------------------------------------------------ */
 
 const matchMonth = (input) => {
-  // Solution code here...
+  let oct = /^october|^October|Oct\b|oct\b/;
+  return oct.test(input);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -69,7 +77,8 @@ The expected output of "Hello, and have a wonderful day!" is ["and ", "have ", "
 ------------------------------------------------------------------------------------------------ */
 
 const noPunctuation = str => {
-  // Solution code here...
+  let noPun = str.match(/\w+ /ig);
+  return noPun;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -85,7 +94,7 @@ For example, 'Welcome to Code 301!' will return 'W_lc_m_ t_ C_d_ 301!'.
 ------------------------------------------------------------------------------------------------ */
 
 let hangman = (str) => {
-  // Solution code here...
+  return str.replace(/[aeiou]/gi,'_');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -101,9 +110,8 @@ Hint: All of these words end with the letters "ells".
 const seashells = 'She sells seashells by the seashore. The shells she sells are surely seashells. So if she sells shells on the seashore, I\'m sure she sells seashore shells.';
 
 const findShells = (str) => {
-  // Solution code here...
+  return str.match(/\w+ells/g)
 };
-
 /* ------------------------------------------------------------------------------------------------
 TESTS
 
