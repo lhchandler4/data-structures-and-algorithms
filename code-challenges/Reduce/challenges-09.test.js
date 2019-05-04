@@ -137,7 +137,15 @@ const characters = [
 ];
 
 const countNumberOfChildren = (arr) => {
-  arr.reduce(a,b) => 
+  let children = arr.reduce((accumulator, currentValue) => {
+    if (currentValue.children) {
+      accumulator += currentValue.children.length;
+      return accumulator;
+    } else {
+      return accumulator += 0;
+    }
+  }, 0);
+  return children;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -149,7 +157,12 @@ Hint: The accumulator should begin as { count: 0, sum: 0 }
 ------------------------------------------------------------------------------------------------ */
 
 const calculateAverage = (arr) => {
-  // return arr.reduce((count: 0, sum: 0) => sum / count)
+  let average = arr.reduce((accumulator, currentValue) =>{
+    accumulator.count = accumulator.count + 1;
+    accumulator.sum = accumulator.sum + currentValue;
+    return accumulator;
+  }, {count: 0, sum: 0});
+  return average.sum/average.count;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -170,7 +183,15 @@ const isPrime = (value) => {
 };
 
 const countPrimeNumbers = (arr) => {
-  // Solution code here...
+  let prime = arr.reduce((accumulator, currentValue)=> {
+    if(isPrime(currentValue)){
+      accumulator = accumulator + 1;
+    } else {
+      accumulator = accumulator + 0;
+    }
+    return accumulator;
+  },0)
+  return prime;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -227,7 +248,7 @@ Write a function named extractChildren that, given the array of characters from 
 ------------------------------------------------------------------------------------------------ */
 
 const extractChildren = (arr) => {
-  // Solution code here...
+  return arr.filter(x => x.name.includes('a')).reduce( (ansSoFar, currentObject) => currentObject.children ? ansSoFar.concat(currentObject.children) : ansSoFar, []);
 };
 
 /* ------------------------------------------------------------------------------------------------
