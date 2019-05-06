@@ -34,17 +34,7 @@ You may want to use filter, map, or reduce for this problem, but are not require
 For example, [[1, 2, 3, 4, 5], [6, 7, 2, 4, 5, 7], [9, 2, 3, 6,]] returns 66.
 ------------------------------------------------------------------------------------------------ */
 
-const totalSum = (input) => {
-  let rowValues = [];
-  for (let i=0; i<input.length; i++) {
-    for (let j=0; j<input[i].length; j++) {
-      let value = input[i][j];
-      rowValues[i] += value;
-    }
-  }
-  var sum = rowValues.reduce(function(accum, currentVal) { return accum + currentVal; }, 0);
-  return sum;
-};
+const totalSum = (input) => input.reduce((accum, currentV) => accum + currentV.reduce((accum, currentV) => accum + currentV, 0), 0);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -58,9 +48,7 @@ This function should then raise 2 to the power of the resulting numbers, returni
 For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 ------------------------------------------------------------------------------------------------ */
 
-const divisibleByFiveTwoToThePower = (input) => {
-  // Solution code here...
-};
+const divisibleByFiveTwoToThePower = (input) => input.map(elem => elem.filter(elem => (typeof elem === 'number' && elem % 5 === 0)).map(elem => 2**elem));
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -124,9 +112,8 @@ let starWarsData = [{
   gender: 'female'
 }];
 
-let findMaleAndFemale = (data) => {
-  // Solution code here...
-};
+let findMaleAndFemale = (data) => data.filter( person => /male/.test(person.gender)).map(person => person.name).join(' and ');
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -134,9 +121,8 @@ CHALLENGE 5
 Write a function named findShortest that, given the Star Wars data from Challenge 6, uses any combination of filter, map and reduce to return the name of the shortest character.
 ------------------------------------------------------------------------------------------------ */
 
-let findShortest = (data) => {
-  // Solution code here...
-};
+let findShortest = (data) => data.reduce((acc, count) => (parseInt(acc.height) < parseInt(count.height)) ? acc : count).name;
+
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
