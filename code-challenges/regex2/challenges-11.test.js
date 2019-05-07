@@ -1,7 +1,5 @@
 'use strict';
 
-import { isFlowBaseAnnotation } from "@babel/types";
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1
 
@@ -11,11 +9,8 @@ If the PIN is four numerical digits long, return true. Otherwise, return false.
 ------------------------------------------------------------------------------------------------ */
 
 const validatePin = (pin) => {
-  if (pin === /[0-9]{4}/) {
-    return true;
-  } else {
-    return false;
-  }
+  let testPin = /\b\d{4}\b/;
+  return testPin.test(pin);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -35,7 +30,9 @@ Note: if you ever need to validate an email using a regex in practice, the Inter
 ------------------------------------------------------------------------------------------------ */
 
 const validateEmail = (email) => {
-  // Solution code here...
+  let validEmail = /^\w+(.\w+)?@\w+.(net|com|org)$/;
+  return validEmail.test(email);
+  // /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.net$|.com$|.org$/
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -60,7 +57,8 @@ Return either true or false.
 ------------------------------------------------------------------------------------------------ */
 
 const validatePhoneNumber = (phoneNumber) => {
-  // Solution code here...
+  let validPhoneNumber = /^(\(\d{3}\)|\d{3})(( |-)?\d{3}){2}\d$/;
+  return validPhoneNumber.test(phoneNumber);
 };
 
 /* ------------------------------------------------------------------------------------------------
