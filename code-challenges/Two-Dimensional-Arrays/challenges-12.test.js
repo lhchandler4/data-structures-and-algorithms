@@ -34,9 +34,7 @@ Here is sample data for the 9:00 sales: { sales: '88 cookies', time: '9 a.m.' }.
 Write a function named salesData that uses forEach to iterate over the hourlySales array and create an object for each hour. Return an array of the formatted data.
 ------------------------------------------------------------------------------------------------ */
 
-const salesData = (hours, data) => {
-  // Solution code here...
-};
+const salesData = (hours, data) => data.map((ele, ind) => ({sales: `${ele} cookies`, time: hours[ind]}));
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -57,7 +55,7 @@ const errands = [
 ];
 
 const howManyTreats = (arr) => {
-  // Solution code here...
+  return arr.reduce((accumulator, currentVal) => currentVal.store === 'Pet store' ? currentVal.items[1].quantity : null);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -78,9 +76,8 @@ Here is a sample board:
 The top row of the board is considered row zero and row numbers increase as they go down.
 ------------------------------------------------------------------------------------------------ */
 
-const battleship = (board, row, col) => {
-  //  Solution code here...
-};
+const battleship = (board, row, col) => board[row][col] === '#' ? 'hit' : 'miss';
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -91,7 +88,7 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 ------------------------------------------------------------------------------------------------ */
 
 const calculateProduct = (numbers) => {
-  // Solution code here...
+  return numbers.reduce((accumulator, currentVal) => accumulator * currentVal.reduce((accum, curr) => accum * curr, 1),1);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -111,7 +108,15 @@ const weeklyTemperatures = [
 ];
 
 const averageDailyTemperature = (weather) => {
-  // Solution code here...
+  let temperatureTotal = 0;
+  let numbOfDays = 0;
+  weather.forEach(shrimp => {
+    for (let i=0; i<shrimp.length; i++) {
+      temperatureTotal += shrimp[i];
+      numbOfDays ++;
+    }
+  })
+  return temperatureTotal/numbOfDays;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -132,7 +137,18 @@ let lowestWeeklyTemperatureData = [
 ];
 
 const lowestWeeklyAverage = (weather) => {
-  // Solution code here...
+  let weeks = [];
+  weather.forEach( shrimp => {
+    let weektotal = 0;
+    for (let i=0; i<shrimp.length; i++) {
+      weektotal += shrimp[i];
+    }
+    weeks.push(Math.ceil(weektotal/7));
+  })
+  let a = weeks.reduce((accumulator, currentVal) => {
+    return (accumulator < currentVal) ? accumulator : currentVal;
+  })
+  return a;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -148,8 +164,22 @@ For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 ------------------------------------------------------------------------------------------------ */
 
 const excel = (str) => {
-  // Solution code here...
-};
+  const sums = [];
+  const rows = str.split('\n');
+  rows.forEach(row => {
+    let sum = 0;
+    const columns = row.split(',');
+    columns.forEach(col => {
+      const num = parseInt(col);
+      sum += num;
+    });
+    sums.push(sum);
+  });
+  return sums;
+}
+
+// const excel = (str) => str.split('\n').map(banana => banana.split(',').reduce((acc, curr) => parseInt(acc) + parseInt(curr)));
+
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
