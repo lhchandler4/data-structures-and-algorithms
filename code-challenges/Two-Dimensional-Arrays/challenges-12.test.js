@@ -177,7 +177,6 @@ const excel = (str) => {
   });
   return sums;
 }
-
 // const excel = (str) => str.split('\n').map(banana => banana.split(',').reduce((acc, curr) => parseInt(acc) + parseInt(curr)));
 
 
