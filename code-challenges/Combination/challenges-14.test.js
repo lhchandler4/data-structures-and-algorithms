@@ -8,9 +8,16 @@ Write a function named toTitleCase that takes in an array of strings and returns
 For example, ['apple', 'banana', 'MacGyver'] returns ['Apple', 'Banana', 'MacGyver'].
 ------------------------------------------------------------------------------------------------ */
 
-const toTitleCase = (arr) => {
-  // Solution code here...
-};
+const toTitleCase = (arr) => arr.map( a => a.charAt(0).toUpperCase() + a.substr(1) );
+
+// {
+//   let newArr = [];
+//   for(var i = 0 ; i < arr.length ; i++){
+//     arr[i].charAt(0).toUpperCase() + arr.substring(1);
+//     newArr.push(arr[i]);
+// }       
+// return newArr;
+// };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
